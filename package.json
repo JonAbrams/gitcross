@@ -1,0 +1,19 @@
+{
+  "name": "nko4-throw-42",
+  "version": "0.0.0",
+  "description": "throw 42;",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nko4/throw-42.git"
+  },
+  "dependencies": {
+    "nko": "*"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
