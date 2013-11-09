@@ -1,0 +1,24 @@
+doctype 5
+html(ng-app="identiPicross")
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.2.1/lodash.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.1/angular.min.js")
+    script(src="/javascripts/puzzle.js")
+  body(ng-controller="puzzleCtrl")
+    h1= title
+
+    table.puzzle
+      tr
+        td
+        td.col-clues(ng-repeat="col in puzzle.rotate().rows", ng-class="{done: same(col.clues(), choices.rotate().rows[$index].clues())}")
+          .col-clue(ng-repeat="clue in col.clues().reverse()")
+            {{ clue }}
+      tr.puzzle-row(ng-repeat="row in choices.rows")
+        td.row-clues(ng-class="{done: same(puzzle.rows[$index].clues(), row.clues())}")
+          .row-clue(ng-repeat="clue in puzzle.rows[$index].clues().reverse()")
+            {{ clue }}
+        td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen(), flagged: pixel.flagged() }" ng-click="pixel.toggleChosen()" ng-right-click="pixel.toggleFlagged()")
+
+    h1(ng-show="youWin") You Win!!
