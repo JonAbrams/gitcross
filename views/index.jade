@@ -2,10 +2,10 @@ doctype 5
 html(ng-app="identiPicross")
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/main.css')
     script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.2.1/lodash.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.1/angular.min.js")
-    script(src="/javascripts/puzzle.js")
+    script(src="/js/puzzle.js")
   body(ng-controller="puzzleCtrl")
     h1= title
 
@@ -22,3 +22,5 @@ html(ng-app="identiPicross")
         td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen(), flagged: pixel.flagged() }" ng-click="pixel.toggleChosen()" ng-right-click="pixel.toggleFlagged()")
 
     h1(ng-show="youWin") You Win!!
+
+    != voteko

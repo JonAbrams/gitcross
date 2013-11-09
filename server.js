@@ -1,17 +1,40 @@
 // https://github.com/nko4/website/blob/master/module/README.md#nodejs-knockout-deploy-check-ins
 require('nko')('j6GA1vh6CcFjggoW');
+var express = require('express');
 
 var isProduction = (process.env.NODE_ENV === 'production');
 var http = require('http');
 var port = (isProduction ? 80 : 8000);
 
-http.createServer(function (req, res) {
-  // http://blog.nodeknockout.com/post/35364532732/protip-add-the-vote-ko-badge-to-your-app
-  var voteko = '<iframe src="http://nodeknockout.com/iframe/throw-42" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>';
+var app = express();
 
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end('<html><body>' + voteko + '</body></html>\n');
-}).listen(port, function(err) {
+app.configure(function () {
+  app.set("views", __dirname + "/views");
+  app.set("view engine", "jade");
+  app.use(express.compress());
+  app.use(express.static(__dirname + "/public"));
+  app.use(express.favicon());
+  app.use(express.logger("dev"));
+  app.use(require('asset-pipeline')({
+    server: app,
+    extensions: [".js", ".css", ".html"]
+  }));
+  app.use(app.router);
+});
+
+app.configure("development", function () {
+  app.use(express.errorHandler());
+  app.locals.pretty = true;
+});
+
+app.get("/", function (req, res) {
+  res.render("index", {
+    title: "identiPicross",
+    voteko: '<iframe src="http://nodeknockout.com/iframe/throw-42" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>'
+  });
+});
+
+http.createServer(app).listen(port, function(err) {
   if (err) { console.error(err); process.exit(-1); }
 
   // if run as root, downgrade to the owner of this file
