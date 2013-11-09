@@ -26,6 +26,9 @@ app.db.once('open', function () {
 //config data models
 require('./models')(app, mongoose);
 
+//load the puzzle data
+app.puzzles = require('./views/puzzle/data.json');
+
 //setup the session store
 app.sessionStore = new mongoStore({ url: config.mongodb.uri });
 
@@ -63,7 +66,7 @@ app.configure(function(){
   //middleware
   app.use(express.favicon(__dirname + '/public/favicon.ico'));
   app.use(express.logger('dev'));
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
