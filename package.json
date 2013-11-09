@@ -2,9 +2,9 @@
   "name": "nko4-throw-42",
   "version": "0.0.0",
   "description": "throw 42;",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
