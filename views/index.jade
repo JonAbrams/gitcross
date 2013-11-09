@@ -5,9 +5,35 @@ block head
 
 block neck
   link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='/views/puzzle.min.css?#{cacheBreaker}')
+  script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.2.1/lodash.min.js")
+  script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js")
+  script(src="https://cdn.goinstant.net/v1/platform.min.js")
+
+block feet
+  script(src='/views/index.min.js')
+  script(src='/views/sync.min.js')
 
 block body
   div.jumbotron
     h1 Gitcross
     p.lead
       | New board coming soon! Just you wait. What else you gonna do?
+  .puzzle(ng-app="gitcross", ng-controller="PuzzleCtrl", ng-cloak="")
+    table
+      tr
+        td
+        td.col-clues(ng-repeat="col in colClues")
+          .col-clue(ng-repeat="clue in colClues[$index] | reverse", ng-class="{ done: clue.myCompleted }")
+            {{ clue.num }}
+      tr.puzzle-row(ng-repeat="row in myChoices.rows")
+        td.row-clues
+          .row-clue(ng-repeat="clue in rowClues[$index] | reverse", ng-class="{ done: clue.myCompleted }" )
+            {{ clue.num }}
+        td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
+
+    h1(ng-show="done") You're done!!
+
+    h2 Challenge someone:
+    .lobby-user(ng-repeat="(key, player) in players")
+      {{ player.displayName }}
