@@ -9,31 +9,35 @@ var port = (isProduction ? 80 : 8000);
 var app = express();
 
 app.configure(function () {
-  app.set("views", __dirname + "/views");
-  app.set("view engine", "jade");
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'jade');
   app.use(express.compress());
-  app.use(express.static(__dirname + "/public"));
+  app.use(express.static(__dirname + '/public'));
   app.use(express.favicon());
-  app.use(express.logger("dev"));
+  app.use(express.logger('dev'));
   app.use(require('asset-pipeline')({
     server: app,
     assets: __dirname + '/assets',
     cache: __dirname + '/cache',
-    extensions: [".js", ".css", ".html"]
+    extensions: ['.js', '.css', '.html']
   }));
   app.use(app.router);
 });
 
-app.configure("development", function () {
+app.configure('development', function () {
   app.use(express.errorHandler());
   app.locals.pretty = true;
 });
 
-app.get("/", function (req, res) {
-  res.render("index", {
-    title: "identiPicross",
+app.get('/', function (req, res) {
+  res.render('index', {
+    title: 'identiPicross',
     voteko: '<iframe src="http://nodeknockout.com/iframe/throw-42" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>'
   });
+});
+
+app.get('/toast', function(req, res) {
+  res.render('toast');
 });
 
 http.createServer(app).listen(port, function(err) {
