@@ -1,51 +1,108 @@
-// https://github.com/nko4/website/blob/master/module/README.md#nodejs-knockout-deploy-check-ins
+'use strict';
+
+//dependencies
 require('nko')('j6GA1vh6CcFjggoW');
-var express = require('express');
+var config = require('./config'),
+    express = require('express'),
+    mongoStore = require('connect-mongo')(express),
+    http = require('http'),
+    path = require('path'),
+    passport = require('passport'),
+    mongoose = require('mongoose');
 
-var isProduction = (process.env.NODE_ENV === 'production');
-var http = require('http');
-var port = (isProduction ? 80 : 8000);
-
+//create express app
 var app = express();
 
-app.configure(function () {
-  app.set("views", __dirname + "/views");
-  app.set("view engine", "jade");
-  app.use(express.compress());
-  app.use(express.static(__dirname + "/public"));
-  app.use(express.favicon());
-  app.use(express.logger("dev"));
-  app.use(require('asset-pipeline')({
-    server: app,
-    assets: __dirname + '/assets',
-    cache: __dirname + '/cache',
-    extensions: [".js", ".css", ".html"]
+//setup the web server
+app.server = http.createServer(app);
+
+//setup mongoose
+app.db = mongoose.createConnection(config.mongodb.uri);
+app.db.on('error', console.error.bind(console, 'mongoose connection error: '));
+app.db.once('open', function () {
+  //and... we have a data store
+});
+
+//config data models
+require('./models')(app, mongoose);
+
+//load the puzzle data
+app.puzzles = require('./views/puzzle/data.json');
+
+//setup the session store
+app.sessionStore = new mongoStore({ url: config.mongodb.uri });
+
+//config express in all environments
+app.configure(function(){
+  //settings
+  app.disable('x-powered-by');
+  app.set('port', config.port);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'jade');
+  app.set('strict routing', true);
+  app.set('project-name', config.projectName);
+  app.set('company-name', config.companyName);
+  app.set('system-email', config.systemEmail);
+  app.set('crypto-key', config.cryptoKey);
+  app.set('require-account-verification', false);
+
+  //smtp settings
+  app.set('smtp-from-name', config.smtp.from.name);
+  app.set('smtp-from-address', config.smtp.from.address);
+  app.set('smtp-credentials', config.smtp.credentials);
+
+  //twitter settings
+  app.set('twitter-oauth-key', config.oauth.twitter.key);
+  app.set('twitter-oauth-secret', config.oauth.twitter.secret);
+  
+  //github settings
+  app.set('github-oauth-key', config.oauth.github.key);
+  app.set('github-oauth-secret', config.oauth.github.secret);
+  
+  //facebook settings
+  app.set('facebook-oauth-key', config.oauth.facebook.key);
+  app.set('facebook-oauth-secret', config.oauth.facebook.secret);
+  
+  //middleware
+  app.use(express.favicon(__dirname + '/public/favicon.ico'));
+  app.use(express.logger('dev'));
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(express.cookieParser());
+  app.use(express.session({
+    secret: config.cryptoKey,
+    store: app.sessionStore
   }));
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(app.router);
+  
+  //error handler
+  app.use(require('./views/http/index').http500);
+  
+  //global locals
+  app.locals.projectName = app.get('project-name');
+  app.locals.copyrightYear = new Date().getFullYear();
+  app.locals.copyrightName = app.get('company-name');
+  app.locals.cacheBreaker = 'br34k-01';
 });
 
-app.configure("development", function () {
+//config express in dev environment
+app.configure('development', function(){
   app.use(express.errorHandler());
-  app.locals.pretty = true;
 });
 
-app.get("/", function (req, res) {
-  res.render("index", {
-    title: "identiPicross",
-    voteko: '<iframe src="http://nodeknockout.com/iframe/throw-42" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>'
-  });
-});
+//setup passport
+require('./passport')(app, passport);
 
-http.createServer(app).listen(port, function(err) {
-  if (err) { console.error(err); process.exit(-1); }
+//route requests
+require('./routes')(app, passport);
 
-  // if run as root, downgrade to the owner of this file
-  if (process.getuid() === 0) {
-    require('fs').stat(__filename, function(err, stats) {
-      if (err) { return console.error(err); }
-      process.setuid(stats.uid);
-    });
-  }
+//setup utilities
+require('./utilities')(app);
 
-  console.log('Server running at http://0.0.0.0:' + port + '/');
+//listen up
+app.server.listen(app.get('port'), function(){
+  //and... we're live
 });
