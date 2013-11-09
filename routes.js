@@ -30,6 +30,9 @@ function ensureAccount(req, res, next) {
 exports = module.exports = function(app, passport) {
   //front end
   app.get('/', require('./views/index').init);
+  app.get('/puzzles/', require('./views/puzzle').init);
+  
+  //content pages
   app.get('/about/', require('./views/about/index').init);
   app.get('/contact/', require('./views/contact/index').init);
   app.post('/contact/', require('./views/contact/index').sendMessage);
