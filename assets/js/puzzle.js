@@ -30,6 +30,10 @@ Pixel.prototype.same = function (pixel) {
   return this.chosen() == pixel.chosen();
 };
 
+function Clue (num) {
+  this.num = num;
+}
+
 function Row (rawRow) {
   this.pixels = rawRow.map(function (state) {
     return new Pixel(state);
@@ -57,12 +61,12 @@ Row.prototype.clues = function () {
     if (series[i].chosen()) {
       current++;
     } else if (current) {
-      clueArr.push(current);
+      clueArr.push( new Clue(current) );
       current = 0;
     }
   }
   if (current > 0 || clueArr.length === 0) {
-    clueArr.push(current);
+    clueArr.push( new Clue(current) );
   }
   return clueArr;
 };
@@ -101,33 +105,55 @@ Puzzle.prototype.rotate = function () {
   return new Puzzle(rot);
 };
 
-angular.module("identiPicross", [])
-.controller("puzzleCtrl", function ($scope) {
-  // Variables
-  $scope.puzzle = new Puzzle(rawPuzzle);
-  var rawChoices = [];
-  for (var i = 0; i < $scope.puzzle.size; i++) {
-    var row = [];
-    for (var j = 0 ; j < $scope.puzzle.size; j++) {
-      row.push(0);
-    }
-    rawChoices.push(row);
-  }
-  $scope.choices = new Puzzle(rawChoices);
+angular.module("gitcross", ['goinstant'])
+.config(function (platformProvider) {
+  platformProvider.set('https://goinstant.net/JonAbrams/gitcross');
+})
+.controller("puzzleCtrl", function ($scope, GoAngular) {
+  $scope.hi = 'jon';
+  var goAngular = new GoAngular($scope, 'puzzleCtrl', { include: ['choices', 'hi', 'youWin'] }).initialize();
+  $scope.connecting = true;
+  // goinstant.connect('https://goinstant.net/JonAbrams/gitcross', function (err, connection, room) {
+    // $scope.$apply(function () {
+  goAngular.then(function () {
+      $scope.connecting = false;
 
-  // Functions
-  var same = $scope.same = function (arr1, arr2) {
-    if (typeof arr1 != 'object') return arr1 == arr2;
-    if (arr1.length != arr2.length) return false;
-    for (var i = 0; i < arr1.length; i++) {
-      if (!same(arr1[i], arr2[i])) return false;
-    }
-    return true;
-  };
+      // Variables
+      $scope.puzzle = new Puzzle(rawPuzzle);
+      var rawChoices = [];
+      for (var i = 0; i < $scope.puzzle.size; i++) {
+        var row = [];
+        for (var j = 0 ; j < $scope.puzzle.size; j++) {
+          row.push(0);
+        }
+        rawChoices.push(row);
+      }
+      $scope.choices = new Puzzle(rawChoices);
 
-  $scope.$watch("choices", function () {
-    $scope.youWin = $scope.choices.same($scope.puzzle);
-  }, true);
+      // Functions
+      var same = $scope.same = function (arr1, arr2) {
+        if (typeof arr1 != 'object') return arr1 == arr2;
+        if (arr1 instanceof Clue) return arr1.num == arr2.num;
+        if (arr1.length != arr2.length) return false;
+        for (var i = 0; i < arr1.length; i++) {
+          if (!same(arr1[i], arr2[i])) return false;
+        }
+        return true;
+      };
+
+      // var goChoices = room.key('choices');
+
+      $scope.$watch("choices", function () {
+        $scope.youWin = $scope.choices.same($scope.puzzle);
+        $scope.rawGrid = $scope.choices.raw();
+        // goChoices.set( $scope.choices.raw() );
+      }, true);
+
+      // $scope.$watch("rawGrid", function () {
+
+      // });
+    });
+  // });
 })
 .directive('ngRightClick', function($parse) {
   return function(scope, element, attrs) {

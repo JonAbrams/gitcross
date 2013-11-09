@@ -1,26 +1,32 @@
 doctype 5
-html(ng-app="identiPicross")
+html(ng-app="gitcross")
   head
     title= title
     link(rel='stylesheet', href='/css/main.css')
     script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.2.1/lodash.min.js")
-    script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.1/angular.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js")
+    script(src="https://cdn.goinstant.net/v1/platform.min.js")
+    script(src="https://cdn.goinstant.net/integrations/goangular/latest/goangular.min.js")
     script(src="/js/puzzle.js")
-  body(ng-controller="puzzleCtrl")
+  body(ng-controller="puzzleCtrl", ng-cloak="")
     h1= title
 
-    table.puzzle
+    h2(ng-show="connecting") Connecting...
+
+    table.puzzle(ng-hide="connecting")
       tr
         td
         td.col-clues(ng-repeat="col in puzzle.rotate().rows", ng-class="{done: same(col.clues(), choices.rotate().rows[$index].clues())}")
           .col-clue(ng-repeat="clue in col.clues().reverse()")
-            {{ clue }}
+            {{ clue.num }}
       tr.puzzle-row(ng-repeat="row in choices.rows")
         td.row-clues(ng-class="{done: same(puzzle.rows[$index].clues(), row.clues())}")
           .row-clue(ng-repeat="clue in puzzle.rows[$index].clues().reverse()")
-            {{ clue }}
+            {{ clue.num }}
         td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen(), flagged: pixel.flagged() }" ng-click="pixel.toggleChosen()" ng-right-click="pixel.toggleFlagged()")
 
     h1(ng-show="youWin") You Win!!
+
+    input(type="text", ng-model="hi")
 
     != voteko
