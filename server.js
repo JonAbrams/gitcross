@@ -17,6 +17,8 @@ app.configure(function () {
   app.use(express.logger("dev"));
   app.use(require('asset-pipeline')({
     server: app,
+    assets: __dirname + '/assets',
+    cache: __dirname + '/cache',
     extensions: [".js", ".css", ".html"]
   }));
   app.use(app.router);
