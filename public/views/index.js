@@ -203,7 +203,6 @@ angular.module("gitcross", [])
     $scope.$apply(function () {
       $scope.players = goinstant.usersInLobby();
       $scope.trophies = goinstant.trophies();
-      debugger
     });
   });
 
