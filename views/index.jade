@@ -19,8 +19,8 @@ block body
         .intro.alert.alert-success.alert-dismissable
           button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
           p
-            | Gitcross is a new variation on <a class="alert-link" target="_blank" href="http://en.wikipedia.org/wiki/Nonogram">Picross (aka Nonogram)</a>, a beloved logic game from Japan.
-            | Each puzzle is made up of one or more <a class="alert-link" href="https://github.com/blog/1586-identicons">GitHub Identicons</a> from some of our favorite GitHub users.
+            | Gitcross is a new variation on <a class="alert-link" href="http://en.wikipedia.org/wiki/Nonogram" target="_blank" >Picross (aka Nonogram)</a>, a beloved logic game from Japan.
+            | Each puzzle is made up of one or more <a class="alert-link" href="https://github.com/blog/1586-identicons" target="_blank" >GitHub Identicons</a> from some of our favorite GitHub users.
             | Complete puzzles to unlock them as trophies!
         .new-game
           .btn-group
@@ -54,7 +54,7 @@ block body
                 img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40", rel='tooltip', data-title='{{ githubber.name }} ({{ githubber.username }})', data-placement='bottom')
           span.label.label-success.time-elapsed
             {{ time | date:'mm:ss' }}
-        h1(ng-show="done") You solved it!!
+        h1.hide(ng-show="done") You solved it!!
       .col-sm-4
         .panel.panel-success
           .panel-heading
