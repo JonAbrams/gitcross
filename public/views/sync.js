@@ -20,17 +20,15 @@ angular.module('gitcross').factory('goinstant', function () {
 
     lobby.users.get(function (err, users, context) {
       usersInLobby = users;
-      lobby.self().get(function (err, value, context) {
+      lobby.self().get(function (err, user, context) {
         if (err) throw err;
-        self.displayName = value.displayName;
-        delete usersInLobby[value.id];
-        lobby.self().key('trophies').get(function (err, value, context) {
-          trophies = [];
-          for (key in value) {
-            trophies.push(value[key]);
-          }
-          fireObservers();
-        });
+        self.displayName = user.displayName;
+        delete usersInLobby[user.id];
+        trophies = [];
+        for (var key in user.trophies) {
+          trophies.push(user.trophies[key]);
+        }
+        fireObservers();
       });
 
       lobby.users.watch(function(value, context) {

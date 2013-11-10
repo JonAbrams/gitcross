@@ -126,7 +126,7 @@ function puzzleDone () {
   return done;
 }
 
-angular.module("gitcross", [])
+angular.module("gitcross", ['ui.bootstrap'])
 .controller("PuzzleCtrl", function ($scope, $http, $timeout, goinstant) {
   var time, timer;
 
@@ -199,6 +199,15 @@ angular.module("gitcross", [])
     pixel.flagged = !pixel.flagged;
   };
 
+  $scope.trophiesHTML = function (player) {
+    var html = "";
+    if (!player.trophies) return "No trophies yet";
+    for (key in player.trophies) {
+      html += "<img class='player-trophy' src='" + player.trophies[key].identicon +"'>"
+    }
+    return html;
+  };
+
   goinstant.registerObserver(function () {
     $scope.$apply(function () {
       $scope.players = goinstant.usersInLobby();
@@ -247,7 +256,18 @@ angular.module("gitcross", [])
         });
     });
   };
-});
+})
+.directive( 'popoverHtmlUnsafePopup', function () {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: { content: '@', placement: '@', animation: '&', isOpen: '&' },
+    templateUrl: 'template/popover/popover-html-unsafe-popup.html'
+ };
+})
+.directive( 'popoverHtmlUnsafe', [ '$tooltip', function ( $tooltip ) {
+  return $tooltip( 'popoverHtmlUnsafe', 'popover', 'click' );
+}]);
 
 $(document).ready(function() {
   $('[rel="tooltip"]').tooltip();

@@ -6,6 +6,7 @@ block head
 block neck
   link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
   script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js")
+  script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js")
   script(src="//cdn.goinstant.net/v1/platform.min.js")
 
 block feet
@@ -19,7 +20,7 @@ block body
         .intro.alert.alert-success.alert-dismissable
           button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
           p
-            | Gitcross is a new variation on <a class="alert-link" href="http://en.wikipedia.org/wiki/Nonogram" target="_blank" >Picross (aka Nonogram)</a>, a beloved logic game from Japan.
+            | Gitcross is a new variation on <a class="alert-link" href="http://en.wikipedia.org/wiki/Nonogram" target="_blank" >Picross (aka Nonogram)</a>, an addictive logic game from Japan.
             | Each puzzle is made up of one or more <a class="alert-link" href="https://github.com/blog/1586-identicons" target="_blank" >GitHub Identicons</a> from some of our favorite GitHub users.
             | Complete puzzles to unlock them as trophies!
         .new-game
@@ -47,7 +48,7 @@ block body
               td.row-clues
                 span.row-clue(ng-repeat="clue in rowClues[$index]", ng-class="{ done: clue.completed }" )
                   {{ clue.num }}
-              td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
+              td.pixel(ng-repeat="pixel in row.pixels", ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
           .githubbers
             .githubber(ng-repeat="githubber in githubbers")
               a(target="_blank", href="https://github.com/{{ githubber.username }}")
@@ -88,7 +89,8 @@ block body
                 button.btn.btn-small(ng-click="changeName = false; setName(self.displayName)")
                   | Save
               li(ng-repeat="(key, player) in players")
-                {{ player.displayName }}
+                .player(popover-html-unsafe="{{ trophiesHTML(player) }}", popover-trigger="mouseenter", popover-placement="left", popover-title="Trophies")
+                  | {{ player.displayName }}
     #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
       .modal-dialog
         .modal-content
