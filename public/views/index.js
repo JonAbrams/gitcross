@@ -191,6 +191,10 @@ angular.module("gitcross", [])
     });
   });
 
+  $scope.self = goinstant.self;
+
+  $scope.setName = goinstant.setName;
+
   $scope.newGame = newGame;
 
   $scope.$watch("myChoices", function () {

@@ -56,8 +56,16 @@ block body
               img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40")
               span.githubname
                 | {{ githubber.name }} ({{ githubber.username }})
-        h2 Other Players:
+        h2 Currently Playing:
         ul.lobby-user
+          li(ng-hide="changeName || !self.displayName")
+            | {{ self.displayName }} (You)
+            button.btn.btn-small(ng-click="changeName = true")
+              i.icon-cog
+          li(ng-show="changeName")
+            input(type="text", ng-model="self.displayName")
+            button.btn.btn-small(ng-click="changeName = false; setName(self.displayName)")
+              | Save
           li(ng-repeat="(key, player) in players")
             {{ player.displayName }}
     #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
