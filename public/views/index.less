@@ -1,26 +1,63 @@
-@import '../less/bootstrap-vars.less';
-
-.jumbotron {
-  background-color: transparent;
-  text-align: center;
-  padding: 30px 60px;
-
-  h1 {
-    font-weight: bold;
+.puzzle {
+  .new-game {
+    margin-top: 20px;
   }
-
-  @media (max-width: @screen-tablet) {
-    h1 {
-      font-size: (@font-size-base * 3.5);
+  table {
+    width: auto;
+    margin: 20px 0 0 0;
+    
+    td {
+      color: #eee;
+      padding: 0 !important;
     }
-  }
-  @media (min-width: @screen-tablet) {
-    h1 {
-      font-size: (@font-size-base * 7.5);
+    .empty {
+      background-color: #33342d;
+    }
+    .col-clues {
+      vertical-align: bottom;
+      text-align: center;
+      background-color: #33342d;
+      font-weight: bold;
+    }
+    .row-clues {
+      text-align: right;
+      vertical-align: middle;
+      padding-left: 10px;
+      background-color: #33342d;
+      font-weight: bold;
+    }
+    .pixel {
+      height: 30px;
+      width: 30px;
+    }
+    .filled {
+      background-color: gray;
+    }
+    .flagged {
+      background-color: black;
+    }
+    .done {
+      color: #8cc84b;
+    }
+    .col-clue {
+      &:first-child {
+        margin-top: 15px;
+      }
+      &:last-child {
+        margin-bottom: 10px;
+      }
+    }
+    .row-clue {
+      display: inline-block;
+      margin-right: 5px;
+      
+      &:first-child {
+        margin-left: 15px;
+      }
+      &:last-child {
+        margin-right: 10px;
+      }
     }
   }
 }
 
-.panel h3 {
-  margin-top: 0;
-}
