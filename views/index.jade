@@ -70,7 +70,7 @@ block body
               p Completing a puzzle unlocks their avatars as trophies. The harder the puzzle the more trophies you'll earn.
             ul.trophies(ng-show="trophies.length > 0")
               li.trophy(ng-repeat="trophy in trophies", rel='tooltip', data-title='{{ trophy.name }} ({{ trophy.username }})')
-                a(href="https://github.com/{{ trophy.username}}")
+                a(href="https://github.com/{{ trophy.username}}", target="_blank")
                   img.trophy-avatar(ng-src="{{ trophy.gravatar }}")
                   img.trophy-identicon(ng-src="{{ trophy.identicon }}")
         .panel.panel-success
