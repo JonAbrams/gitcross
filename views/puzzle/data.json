@@ -129,49 +129,6 @@
     ]
   },
   {
-    "username": "tjfontaine",
-    "name": "Timothy J Fontaine",
-    "gravatar": "https://1.gravatar.com/avatar/5b0065d5124e5a0fb38e0e7dc998e094?s=300",
-    "identicon": "https://identicons.github.com/a71c95d8ba9295331011a587a79b5f8c.png",
-    "puzzle": [
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        0,
-        1
-      ],
-      [
-        0,
-        1,
-        0,
-        1,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        1,
-        0,
-        1,
-        0
-      ]
-    ]
-  },
-  {
     "username": "abhshkdz",
     "name": "Abhishek Das",
     "gravatar": "https://1.gravatar.com/avatar/a36d4f1831b3e2c95fa1e42fc45f82d5?s=300",
@@ -2666,49 +2623,6 @@
     ]
   },
   {
-    "username": "jrcryer",
-    "name": "James Cryer",
-    "gravatar": "https://0.gravatar.com/avatar/cee3738f3e9379caef7ff65401b7f98e?s=300",
-    "identicon": "https://identicons.github.com/3ef52f912fd83d7e57824c0e49925ef3.png",
-    "puzzle": [
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        1,
-        0,
-        1
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        1,
-        0,
-        1,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ]
-    ]
-  },
-  {
     "username": "igrigorik",
     "name": "Ilya Grigorik",
     "gravatar": "https://1.gravatar.com/avatar/a17f0025641b4be419a6cd3845e55dd2?s=300",
@@ -2795,49 +2709,6 @@
     ]
   },
   {
-    "username": "jakutis",
-    "name": "Vytautas Jakutis",
-    "gravatar": "https://2.gravatar.com/avatar/8b1fe4d40dee0564abed40b00d78cb57?s=300",
-    "identicon": "https://identicons.github.com/b648228e279169cb9037366b47c7f258.png",
-    "puzzle": [
-      [
-        0,
-        1,
-        0,
-        1,
-        0
-      ],
-      [
-        0,
-        1,
-        1,
-        1,
-        0
-      ],
-      [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      [
-        0,
-        1,
-        1,
-        1,
-        0
-      ],
-      [
-        1,
-        0,
-        1,
-        0,
-        1
-      ]
-    ]
-  },
-  {
     "username": "bnoguchi",
     "name": "Brian Noguchi",
     "gravatar": "https://1.gravatar.com/avatar/80a7ef9f365cf269bc614ff8f4eaac06?s=300",
@@ -2876,49 +2747,6 @@
         1,
         1,
         1,
-        1
-      ]
-    ]
-  },
-  {
-    "username": "panta",
-    "name": "Marco Pantaleoni",
-    "gravatar": "https://0.gravatar.com/avatar/8d556e3afbb20ad2623b46413d1cb345?s=300",
-    "identicon": "https://identicons.github.com/cdbd3ad167f0004ba63d20536a240e43.png",
-    "puzzle": [
-      [
-        0,
-        1,
-        1,
-        1,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        0,
-        1
-      ],
-      [
-        1,
-        0,
-        0,
-        0,
-        1
-      ],
-      [
-        1,
-        1,
-        0,
-        1,
-        1
-      ],
-      [
-        1,
-        0,
-        0,
-        0,
         1
       ]
     ]
@@ -3006,49 +2834,6 @@
         0,
         0,
         1
-      ]
-    ]
-  },
-  {
-    "username": "JustinTulloss",
-    "name": "Justin Tulloss",
-    "gravatar": "https://0.gravatar.com/avatar/8560be138a66ea551d9ab70ca56b785c?s=300",
-    "identicon": "https://identicons.github.com/9cc1c015c32f74bcbd1c315c445b89ef.png",
-    "puzzle": [
-      [
-        1,
-        1,
-        0,
-        1,
-        1
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        1,
-        1
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
       ]
     ]
   },
@@ -3350,49 +3135,6 @@
         1,
         1,
         0
-      ]
-    ]
-  },
-  {
-    "username": "tOkeshu",
-    "name": "Romain Gauthier",
-    "gravatar": "https://1.gravatar.com/avatar/475fbc182fe2ace60b49aa58e951b7dd?s=300",
-    "identicon": "https://identicons.github.com/e36c077321a1198bdc16fb5477cd90b8.png",
-    "puzzle": [
-      [
-        1,
-        0,
-        1,
-        0,
-        1
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        1,
-        1,
-        1,
-        0
-      ],
-      [
-        1,
-        0,
-        1,
-        0,
-        1
       ]
     ]
   },
@@ -4687,49 +4429,6 @@
     ]
   },
   {
-    "username": "bnoordhuis",
-    "name": "Ben Noordhuis",
-    "gravatar": "https://0.gravatar.com/avatar/3d43d9038ab645ecb2e3a1df2951d30a?s=300",
-    "identicon": "https://identicons.github.com/32d70ef31f9d796f0d7bdf5c21d02030.png",
-    "puzzle": [
-      [
-        0,
-        1,
-        0,
-        1,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        1,
-        0,
-        1
-      ]
-    ]
-  },
-  {
     "username": "startupandrew",
     "name": "Andrew Lee",
     "gravatar": "https://0.gravatar.com/avatar/2678b44da2a6376d2d37809999fa75bd?s=300",
@@ -5633,92 +5332,6 @@
     ]
   },
   {
-    "username": "bhanuc",
-    "name": "bhanuc",
-    "gravatar": "https://0.gravatar.com/avatar/a201ed18b085def62c360deb118dc647?s=300",
-    "identicon": "https://identicons.github.com/8e4a39115b9bb272cb25dbe0ae16f047.png",
-    "puzzle": [
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        1,
-        0,
-        1
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    ]
-  },
-  {
-    "username": "jfgodoy",
-    "name": "jfgodoy",
-    "gravatar": "https://2.gravatar.com/avatar/42cd05dcd464fc51c2dbf171b63df792?s=300",
-    "identicon": "https://identicons.github.com/3c1ee8bdd0ef5f55c93ef9dab12658df.png",
-    "puzzle": [
-      [
-        1,
-        1,
-        0,
-        1,
-        1
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        1,
-        1,
-        1,
-        0
-      ]
-    ]
-  },
-  {
     "username": "TrangNguyen",
     "name": "Trang",
     "gravatar": "https://0.gravatar.com/avatar/b0e14565eb2af663c66c5ef1ce6a03dd?s=300",
@@ -5756,49 +5369,6 @@
         1,
         1,
         0,
-        1,
-        1
-      ]
-    ]
-  },
-  {
-    "username": "vovan22",
-    "name": "Lary",
-    "gravatar": "https://2.gravatar.com/avatar/02057ab837fa3662ab934506d766eb16?s=300",
-    "identicon": "https://identicons.github.com/a2c9c4d1e2bb7ce809fea131449991d3.png",
-    "puzzle": [
-      [
-        0,
-        1,
-        1,
-        1,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        1,
-        1
-      ],
-      [
-        1,
-        1,
-        1,
         1,
         1
       ]
@@ -6661,49 +6231,6 @@
         1,
         0,
         0
-      ]
-    ]
-  },
-  {
-    "username": "kmiyashiro",
-    "name": "Kelly Miyashiro",
-    "gravatar": "https://1.gravatar.com/avatar/2200bf6fafdb77686ac68358911252e0?s=300",
-    "identicon": "https://identicons.github.com/f7c512eb7665bf289ccf9608050e4bc3.png",
-    "puzzle": [
-      [
-        1,
-        1,
-        0,
-        1,
-        1
-      ],
-      [
-        0,
-        1,
-        0,
-        1,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        1,
-        1
       ]
     ]
   },
@@ -8428,49 +7955,6 @@
     ]
   },
   {
-    "username": "samsquire",
-    "name": "samsquire",
-    "gravatar": "https://1.gravatar.com/avatar/13728c919c63dfc36e9d3fe29835ff1f?s=300",
-    "identicon": "https://identicons.github.com/d5d6ad2757d5e5374cb23cc6881c1913.png",
-    "puzzle": [
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        1,
-        0,
-        1,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        0,
-        1
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ]
-    ]
-  },
-  {
     "username": "maxfierke",
     "name": "Max Fierke",
     "gravatar": "https://1.gravatar.com/avatar/9e2116958267ef9275c458a3c6a0c85c?s=300",
@@ -8553,49 +8037,6 @@
         1,
         1,
         0
-      ]
-    ]
-  },
-  {
-    "username": "mahsam",
-    "name": "mahsam",
-    "gravatar": "https://2.gravatar.com/avatar/b8bd5f3b4ef01a333504b1eb611ecfc7?s=300",
-    "identicon": "https://identicons.github.com/32e597e96f5e6eaf760201978c5df014.png",
-    "puzzle": [
-      [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      [
-        1,
-        0,
-        1,
-        0,
-        1
-      ],
-      [
-        1,
-        1,
-        0,
-        1,
-        1
-      ],
-      [
-        1,
-        0,
-        0,
-        0,
-        1
       ]
     ]
   },
@@ -11734,49 +11175,6 @@
         1,
         1,
         1,
-        1
-      ]
-    ]
-  },
-  {
-    "username": "eleith",
-    "name": "eleith",
-    "gravatar": "https://2.gravatar.com/avatar/3eea5b92a9dbe3c9e44039d042bc6fbf?s=300",
-    "identicon": "https://identicons.github.com/4ca9d1108d545c6ac5b6695d5a62c7b2.png",
-    "puzzle": [
-      [
-        0,
-        0,
-        1,
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        1,
-        0,
-        1
-      ],
-      [
-        0,
-        1,
-        1,
-        1,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        1,
-        1
-      ],
-      [
-        1,
-        0,
-        0,
-        0,
         1
       ]
     ]
