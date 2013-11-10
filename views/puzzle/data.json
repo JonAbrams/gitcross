@@ -1,5 +1,48 @@
 [
   {
+    "username": "jedireza",
+    "name": "Reza Akhavan",
+    "gravatar": "https://0.gravatar.com/avatar/8aa48befef107b01994ec57fadf2d465?s=300",
+    "identicon": "https://identicons.github.com/a94905c2225da84eeb4350fce4d7e287.png",
+    "puzzle": [
+      [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    ]
+  },
+  {
     "username": "mikeal",
     "name": "Mikeal Rogers",
     "gravatar": "https://0.gravatar.com/avatar/d8eba8dd0e89a0580ec4157681121a79?s=300",

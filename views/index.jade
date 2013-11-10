@@ -32,7 +32,7 @@ block body
               ul.dropdown-menu(role='menu')
                 li: a(href='#', ng-click='size = 1;newGame()') Easy (5 x 5)
                 li: a(href='#', ng-click='size = 2;newGame()') Medium (10 x 10)
-                li: a(href='#', ng-click='size = 2;newGame()') Hard (15 x 15)
+                li: a(href='#', ng-click='size = 3;newGame()') Hard (15 x 15)
           |
           button.btn.btn-success(type='button', data-toggle='modal', data-target='#myModal')
             i.icon-question-sign
@@ -71,7 +71,7 @@ block body
               p Completing a puzzle unlocks their avatars as trophies. The harder the puzzle the more trophies you'll earn.
             ul.trophies(ng-show="trophies.length > 0")
               li.trophy(ng-repeat="trophy in trophies", rel='tooltip', data-title='{{ trophy.name }} ({{ trophy.username }})')
-                a(href="https://github.com/{{ trophy.username}}")
+                a(href="https://github.com/{{ trophy.username}}", target="_blank")
                   img.trophy-avatar(ng-src="{{ trophy.gravatar }}")
                   img.trophy-identicon(ng-src="{{ trophy.identicon }}")
         .panel.panel-success
@@ -81,13 +81,16 @@ block body
             p(ng-hide="self.displayName") Connecting...
             ul.lobby-user
               li(ng-hide="changeName || !self.displayName")
-                | {{ self.displayName }} (You)
-                button.btn.btn-small(ng-click="changeName = true")
-                  i.icon-cog
+                .input-group
+                  input.form-control(disabled='disabled', value='{{ self.displayName }} (you)')
+                  span.input-group-btn
+                    button.btn.btn-warning.btn-small(ng-click="changeName = true")
+                      i.icon-cog
               li(ng-show="changeName")
-                input(type="text", ng-model="self.displayName")
-                button.btn.btn-small(ng-click="changeName = false; setName(self.displayName)")
-                  | Save
+                .input-group
+                  input.form-control(type="text", ng-model="self.displayName")
+                  span.input-group-btn
+                    button.btn.btn-warning.btn-small(ng-click="changeName = false; setName(self.displayName)") Save
               li(ng-repeat="(key, player) in players")
                 .player(popover-html-unsafe="{{ trophiesHTML(player) }}", popover-trigger="mouseenter", popover-placement="left", popover-title="Trophies")
                   | {{ player.displayName }}
