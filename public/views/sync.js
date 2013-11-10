@@ -26,16 +26,20 @@ angular.module('gitcross').factory('goinstant', function () {
         fireObservers();
       });
 
+      lobby.users.watch(function(value, context) {
+        if (context.key.match(/displayName$/) && usersInLobby[context.userId]) {
+          usersInLobby[context.userId].displayName = value;
+        }
+      });
+
       lobby.on('join', function (user) {
         console.log("User joined lobby!", user);
         usersInLobby[user.id] = user;
-        fireObservers();
       });
 
       lobby.on('leave', function (user) {
         console.log("User left lobby!", user);
         delete usersInLobby[user.id];
-        fireObservers();
       });
     });
   });
