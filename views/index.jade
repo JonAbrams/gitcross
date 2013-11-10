@@ -54,11 +54,11 @@ block body
                 img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40", rel='tooltip', data-title='{{ githubber.name }} ({{ githubber.username }})', data-placement='bottom')
           span.label.label-success.time-elapsed
             {{ time | date:'mm:ss' }}
-        h1.hide(ng-show="done") You solved it!!
+        h1(ng-show="done") You solved it!!
       .col-sm-4
         .panel.panel-success
           .panel-heading
-            .panel-title Your trophies
+            .panel-title Your Trophy Case
           .panel-body
             p(ng-hide="self.displayName") Connecting...
             .no-trophies(ng-show="trophies.length == 0 && self.displayName")
