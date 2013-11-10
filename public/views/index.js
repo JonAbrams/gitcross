@@ -127,10 +127,14 @@ function puzzleDone () {
 }
 
 angular.module("gitcross", [])
-.controller("PuzzleCtrl", function ($scope, $http, goinstant) {
+.controller("PuzzleCtrl", function ($scope, $http, $timeout, goinstant) {
+  var time, timer;
   function newGame (difficulty) {
+    if (timer) $timeout.cancel(timer);
     $http.get("/puzzles/?size=" + difficulty).then(function (res) {
       $scope.done = false;
+      $scope.time = 0;
+
       puzzle = createPuzzle(res.data.puzzle);
 
       $scope.githubbers = res.data.sources;
@@ -157,15 +161,24 @@ angular.module("gitcross", [])
       $scope.rowClues = rowClues;
 
       $scope.colClues = colClues;
+
+      var startTimer = function () {
+        timer =  $timeout(function () {
+          $scope.time += 1000;
+          startTimer();
+        }, 1000);
+      };
+      startTimer();
     });
-  };
+  }
 
   $scope.choosePixel = function (pixel) {
-    if (pixel.flagged) return;
+    if (pixel.flagged || $scope.done) return;
     pixel.chosen = !pixel.chosen;
   };
 
   $scope.flagPixel = function (pixel) {
+    if ($scope.done) return;
     if (pixel.chosen) {
       pixel.chosen = false;
     }
@@ -184,6 +197,9 @@ angular.module("gitcross", [])
     if ($scope.myChoices) {
       updateClueStatus($scope.myChoices);
       $scope.done = puzzleDone();
+      if ($scope.done) {
+        $timeout.cancel(timer);
+      }
     }
   }, true);
 
