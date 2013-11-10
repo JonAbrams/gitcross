@@ -11,20 +11,13 @@ html
     div.navbar.navbar-inverse.navbar-fixed-top
       div.container
         div.navbar-header
-          a.navbar-brand(href='/')
+          a.navbar-brand(href='/', rel='tooltip', data-title='Play Picross With GitHub Identicons', data-placement='bottom')
             img.navbar-logo(src='/media/logo-inverse.png')
           button.navbar-toggle.collapsed(data-toggle='collapse', data-target='.my-navbar-collapse')
             span.icon-bar
             span.icon-bar
             span.icon-bar
         div.navbar-collapse.my-navbar-collapse.collapse
-          ul.nav.navbar-nav
-            li: a(href='#how-to-play')
-              i.icon-question-sign
-              |  How to Play
-            li: a(href='#leader-board')
-              i.icon-trophy
-              |  Leader Board
           ul.nav.navbar-nav.navbar-right
             li: iframe(src='http://nodeknockout.com/iframe/throw-42', frameborder='0', scrolling='no', allowtransparency='true', width='115', height='25')
     

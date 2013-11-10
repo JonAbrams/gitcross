@@ -18,12 +18,17 @@ block body
       .col-sm-8
         .new-game
           .btn-group
-            button.btn.btn-success(ng-click="newGame(1)")
-              | Easy (5x5)
-            button.btn.btn-success(ng-click="newGame(2)")
-              | Medium (10x10)
-            button.btn.btn-success(ng-click="newGame(3)")
-              | Hard (15x15)
+              button.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown')
+                i.icon-plus-sign
+                |  New Game
+              ul.dropdown-menu(role='menu')
+                li: a(href='#', ng-click='newGame(1)') Easy (5 x 5)
+                li: a(href='#', ng-click='newGame(2)') Medium (10 x 10)
+                li: a(href='#', ng-click='newGame(3)') Hard (15 x 15)
+          | 
+          button.btn.btn-success(type='button', data-toggle='modal', data-target='#myModal')
+            i.icon-question-sign
+            |  How to Play
         table.table.table-bordered
           tr
             td.empty
@@ -47,5 +52,16 @@ block body
               span.githubname
                 | {{ githubber.name }} ({{ githubber.username }})
         h2 Other Players:
-        .lobby-user(ng-repeat="(key, player) in players")
-          {{ player.displayName }}
+        ul.lobby-user
+          li(ng-repeat="(key, player) in players")
+            {{ player.displayName }}
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+            h4#myModalLabel.modal-title How to Play
+          .modal-body
+            | this is the body
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
