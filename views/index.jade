@@ -58,8 +58,23 @@ block body
       .col-sm-4
         .panel.panel-success
           .panel-heading
+            .panel-title Your trophies
+          .panel-body
+            .no-trophies(ng-show="trophies.length == 0")
+              p You haven't earned any trophies yet. Complete a puzzle to earn your first trophy!
+              p <strong> What's a trophy?</strong>
+              p Each picross puzzle is made up of one or more identicons of various github users.
+              p Completing a puzzle gives you their account as a trophy.
+            ul.trophies(ng-show="trophies.length > 0")
+              li.trophy(ng-repeat="trophy in trophies", rel='tooltip', data-title='{{ trophy.name }} ({{ trophy.username }})')
+                a(href="https://github.com/{{ trophy.username}}")
+                  img.trophy-avatar(ng-src="{{ trophy.gravatar }}")
+                  img.trophy-identicon(ng-src="{{ trophy.identicon }}")
+        .panel.panel-success
+          .panel-heading
             .panel-title Currently Playing
           .panel-body
+            p(ng-hide="self.displayName") Connecting...
             ul.lobby-user
               li(ng-hide="changeName || !self.displayName")
                 | {{ self.displayName }} (You)
@@ -71,11 +86,6 @@ block body
                   | Save
               li(ng-repeat="(key, player) in players")
                 {{ player.displayName }}
-        .panel.panel-success
-          .panel-heading
-            .panel-title Currently Playing
-          .panel-body
-            | collected trophies
     #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
       .modal-dialog
         .modal-content

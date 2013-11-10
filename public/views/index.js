@@ -131,6 +131,8 @@ angular.module("gitcross", [])
   var time, timer;
 
   $scope.size = 1;
+  $scope.trophies = [];
+
   function newGame () {
     if (timer) $timeout.cancel(timer);
     $http.get("/puzzles/?size=" + $scope.size).then(function (res) {
@@ -174,6 +176,14 @@ angular.module("gitcross", [])
     });
   }
 
+  function addTrophies () {
+    $scope.githubbers.forEach(function (githubber) {
+      if ( _.where($scope.trophies, {username: githubber.username}).length === 0 ) {
+        $scope.trophies.push( angular.copy(githubber) );
+      }
+    });
+  }
+
   $scope.choosePixel = function (pixel) {
     if (pixel.flagged || $scope.done) return;
     pixel.chosen = !pixel.chosen;
@@ -203,6 +213,9 @@ angular.module("gitcross", [])
     if ($scope.myChoices) {
       updateClueStatus($scope.myChoices);
       $scope.done = puzzleDone();
+      if ($scope.done) {
+        addTrophies();
+      }
       if ($scope.done) {
         $timeout.cancel(timer);
       }

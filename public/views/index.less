@@ -4,9 +4,39 @@ h1, h2, h3, h4, h5 {
 ul li {
   color: #8cc84b !important;
 }
+
+ul.trophies {
+  padding-left: 0;
+
+  .trophy {
+    list-style: none;
+    display: inline-block;
+    margin-left: 5px;
+
+    .trophy-identicon {
+      display: none;
+    }
+
+    .trophy-identicon, .trophy-avatar {
+      width: 40px;
+      height: 40px;
+    }
+
+    &:hover {
+      .trophy-identicon {
+        display: inline-block;
+      }
+
+      .trophy-avatar {
+        display: none;
+      }
+    }
+  }
+}
+
 .puzzle {
   margin-top: 20px;
-  
+
   .githubbers {
     float: right;
     .githubber {
