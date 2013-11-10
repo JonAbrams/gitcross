@@ -31,12 +31,21 @@ block body
               {{ clue.num }}
         tr.puzzle-row(ng-repeat="row in myChoices.rows")
           td.row-clues
-            span.row-clue(ng-repeat="clue in rowClues[$index] | reverse", ng-class="{ done: clue.completed }" )
+            span.row-clue(ng-repeat="clue in rowClues[$index]", ng-class="{ done: clue.completed }" )
               {{ clue.num }}
           td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
 
-      h1(ng-show="done") You're done!!
+      h1(ng-show="done") You solved it!!
 
-      h2 Challenge someone:
+      .githubbers
+        h3 Solve the above puzzle to earn trophies of the following GitHubbers:
+        .githubber(ng-repeat="githubber in githubbers")
+          a(href="https://github.com/{{ githubber.username }}")
+            img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40")
+            span.githubname
+              | {{ githubber.name }} ({{ githubber.username }})
+
+
+      h2 People playing:
       .lobby-user(ng-repeat="(key, player) in players")
         {{ player.displayName }}

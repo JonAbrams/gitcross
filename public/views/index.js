@@ -132,6 +132,8 @@ angular.module("gitcross", [])
       $scope.done = false;
       puzzle = createPuzzle(res.data.puzzle);
 
+      $scope.githubbers = res.data.sources;
+
       rowClues = puzzle.rows.map(function (row) {
         return clues(row.pixels);
       });
