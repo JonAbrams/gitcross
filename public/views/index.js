@@ -103,11 +103,12 @@ function updateClueStatus (puzzle) {
   });
   // Columns
   rotate(puzzle).rows.forEach(function (row, index) {
-    var guess = clues(row.pixels);
+    var guess = clues(row.pixels).reverse();
     var size = guess.length < colClues[index].length ? guess.length : colClues[index].length;
     clearRow(colClues[index]);
+    var col = _(colClues[index]).clone().reverse();
     for (var j = 0; j < size; j++) {
-      var clue = colClues[index][j];
+      var clue = col[j];
       clue.completed = clue.num == guess[j].num;
     }
   });
