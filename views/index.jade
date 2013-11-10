@@ -16,6 +16,11 @@ block body
   .container.puzzle(ng-app="gitcross", ng-controller="PuzzleCtrl", ng-cloak="")
     .row
       .col-sm-8
+        .intro.alert.alert-dismissable
+          button.close(type="button", data-dismiss="alert", aria-hidden="true") &times;
+          p Gitcross is a new variation on <a target="_blank" href="http://en.wikipedia.org/wiki/Nonogram">Picross (aka Nonogram)</a>, a beloved logic game from Japan.
+          p Each puzzle is made up of one or more <a href="https://github.com/blog/1586-identicons">Github identicons</a> from random Github users shown on the right of the page.
+          p Complete their puzzle's to collect them as trophies!
         .new-game
           .btn-group
               button.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown')
@@ -25,7 +30,7 @@ block body
                 li: a(href='#', ng-click='newGame(1)') Easy (5 x 5)
                 li: a(href='#', ng-click='newGame(2)') Medium (10 x 10)
                 li: a(href='#', ng-click='newGame(3)') Hard (15 x 15)
-          | 
+          |
           button.btn.btn-success(type='button', data-toggle='modal', data-target='#myModal')
             i.icon-question-sign
             |  How to Play
@@ -62,6 +67,12 @@ block body
             button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
             h4#myModalLabel.modal-title How to Play
           .modal-body
-            | this is the body
+            .how-to-play
+              p The goal of the game is the same as traditional Picross, reveal the specific set of pixels on the grid in as short a time as possible.
+              p Each row and each column has a set of numbers showing how many groups of pixels, and their size, exist in that row or column.
+              p For example, if a row has a 3 and a 2, it means that this row contains a group of 3 pixels (with no spaces between them), followed by 1 or more spaces, then a group of 2 pixels, in order.
+              p To choose a pixel, click it. To flag a pixel as a space, right-click (or ctrl+click) it. Flagging a space isn't required to solve a puzzle but it can really help!
+              p Tip: Easy puzzles only contain 5 pixels per row or column. So if you see a row or a column with a 5, just click on all of its pixels.
+              p If you're still perplexed, check out <a href="http://en.wikipedia.org/wiki/Nonogram">Wikipedia</a> for more including various strategies for solving the puzzles.
           .modal-footer
             button.btn.btn-default(type='button', data-dismiss='modal') Close
