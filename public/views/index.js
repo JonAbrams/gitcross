@@ -202,8 +202,9 @@ angular.module("gitcross", ['ui.bootstrap'])
   $scope.trophiesHTML = function (player) {
     var html = "";
     if (!player.trophies) return "No trophies yet";
-    for (key in player.trophies) {
-      html += "<img class='player-trophy' src='" + player.trophies[key].identicon +"'>"
+    for (var key in player.trophies) {
+      if (!/^https:\/\/identicons.github\.com/.test(player.trophies[key].identicon)) return "";
+      html += "<img class='player-trophy' src='" + player.trophies[key].identicon +"'>";
     }
     return html;
   };
