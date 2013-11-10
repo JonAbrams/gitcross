@@ -1,10 +1,6 @@
-var rawPuzzle = [
-  [1,1,1,0,1],
-  [1,0,1,0,1],
-  [0,1,1,0,0],
-  [1,1,1,1,1],
-  [0,0,0,0,0]
-];
+var puzzle;
+var rowClues;
+var colClues;
 
 function createPixel (state, id) {
   return {
@@ -34,8 +30,7 @@ function sameRow (row1, row2) {
 
 function createClue (num) {
   return {
-    myCompleted: false,
-    theyCompleted: false,
+    completed: false,
     num: num
   };
 }
@@ -90,20 +85,10 @@ function rotate (puzzle) {
   return createPuzzle(rot);
 }
 
-var puzzle = createPuzzle(rawPuzzle);
-
-var rowClues = puzzle.rows.map(function (row) {
-  return clues(row.pixels);
-});
-
-var colClues = rotate(puzzle).rows.map(function (row) {
-  return clues(row.pixels);
-});
-
 function updateClueStatus (puzzle) {
   function clearRow (row) {
     row.forEach(function (clue) {
-      clue.myCompleted = false;
+      clue.completed = false;
     });
   }
   // Rows
@@ -113,7 +98,7 @@ function updateClueStatus (puzzle) {
     var size = guess.length < rowClues[index].length ? guess.length : rowClues[index].length;
     for (var j = 0; j < size; j++) {
       var clue = rowClues[index][j];
-      clue.myCompleted = clue.num == guess[j].num;
+      clue.completed = clue.num == guess[j].num;
     }
   });
   // Columns
@@ -123,7 +108,7 @@ function updateClueStatus (puzzle) {
     clearRow(colClues[index]);
     for (var j = 0; j < size; j++) {
       var clue = colClues[index][j];
-      clue.myCompleted = clue.num == guess[j].num;
+      clue.completed = clue.num == guess[j].num;
     }
   });
 }
@@ -133,7 +118,7 @@ function puzzleDone () {
   [rowClues, colClues].forEach(function (rows) {
     rows.forEach(function (row) {
       row.forEach(function (clue) {
-        done = done && clue.myCompleted;
+        done = done && clue.completed;
       });
     });
   });
@@ -141,21 +126,36 @@ function puzzleDone () {
 }
 
 angular.module("gitcross", [])
-.controller("PuzzleCtrl", function ($scope, goinstant) {
-  // Variables
-  var rawChoices = [];
-  for (var i = 0; i < puzzle.size; i++) {
-    var row = [];
-    for (var j = 0 ; j < puzzle.size; j++) {
-      row.push(0);
-    }
-    rawChoices.push(row);
-  }
-  $scope.myChoices = createPuzzle(rawChoices);
+.controller("PuzzleCtrl", function ($scope, $http, goinstant) {
+  function newGame (difficulty) {
+    $http.get("/puzzles/?size=" + difficulty).then(function (res) {
+      $scope.done = false;
+      puzzle = createPuzzle(res.data.puzzle);
 
-  $scope.rowClues = rowClues;
+      rowClues = puzzle.rows.map(function (row) {
+        return clues(row.pixels);
+      });
 
-  $scope.colClues = colClues;
+      colClues = rotate(puzzle).rows.map(function (row) {
+        return clues(row.pixels);
+      });
+
+      // Variables
+      var rawChoices = [];
+      for (var i = 0; i < puzzle.size; i++) {
+        var row = [];
+        for (var j = 0 ; j < puzzle.size; j++) {
+          row.push(0);
+        }
+        rawChoices.push(row);
+      }
+      $scope.myChoices = createPuzzle(rawChoices);
+
+      $scope.rowClues = rowClues;
+
+      $scope.colClues = colClues;
+    });
+  };
 
   $scope.choosePixel = function (pixel) {
     if (pixel.flagged) return;
@@ -175,10 +175,17 @@ angular.module("gitcross", [])
     });
   });
 
+  $scope.newGame = newGame;
+
   $scope.$watch("myChoices", function () {
-    updateClueStatus($scope.myChoices);
-    $scope.done = puzzleDone();
+    if ($scope.myChoices) {
+      updateClueStatus($scope.myChoices);
+      $scope.done = puzzleDone();
+    }
   }, true);
+
+  // Start the first game!
+  newGame(1);
 })
 .filter('reverse', function () {
   return function (arr) {

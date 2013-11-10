@@ -17,7 +17,6 @@ angular.module('gitcross').factory('goinstant', function () {
 
     lobby.users.get(function (err, users, context) {
       usersInLobby = users;
-      console.log(usersInLobby);
       fireObservers();
 
       lobby.on('join', function (user) {

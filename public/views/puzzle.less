@@ -23,14 +23,24 @@ td {
 }
 
 .row-clues {
-  width: 80px;
+  text-align: right;
 }
 
-.row-clues div {
+.row-clue {
+  display: inline-block;
   margin-right: 5px;
-  float: right;
+
+  &:first-child {
+    margin-left: 5px;
+  }
 }
 
-.col-clues div {
-  display: block;
+.col-clues {
+  vertical-align: bottom;
+  text-align: center;
+}
+
+.new-game {
+  margin: 10px;
+  margin-left: 0;
 }

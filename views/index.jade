@@ -15,25 +15,31 @@ block feet
   script(src='/views/sync.min.js')
 
 block body
-  div.jumbotron
-    h1 Gitcross
-    p.lead
-      | New board coming soon! Just you wait. What else you gonna do?
-  .puzzle(ng-app="gitcross", ng-controller="PuzzleCtrl", ng-cloak="")
-    table
-      tr
-        td
-        td.col-clues(ng-repeat="col in colClues")
-          .col-clue(ng-repeat="clue in colClues[$index] | reverse", ng-class="{ done: clue.myCompleted }")
-            {{ clue.num }}
-      tr.puzzle-row(ng-repeat="row in myChoices.rows")
-        td.row-clues
-          .row-clue(ng-repeat="clue in rowClues[$index] | reverse", ng-class="{ done: clue.myCompleted }" )
-            {{ clue.num }}
-        td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
+  .container
+    .puzzle(ng-app="gitcross", ng-controller="PuzzleCtrl", ng-cloak="")
+      .new-game
+        p New Game:
+        .btn-group
+          button.btn.btn-primary(ng-click="newGame(1)")
+            | Easy (5x5)
+          button.btn.btn-primary(ng-click="newGame(2)")
+            | Medium (10x10)
+          button.btn.btn-primary(ng-click="newGame(3)")
+            | Hard (15x15)
+      table
+        tr
+          td
+          td.col-clues(ng-repeat="col in colClues")
+            .col-clue(ng-repeat="clue in colClues[$index] | reverse", ng-class="{ done: clue.completed }")
+              {{ clue.num }}
+        tr.puzzle-row(ng-repeat="row in myChoices.rows")
+          td.row-clues
+            span.row-clue(ng-repeat="clue in rowClues[$index] | reverse", ng-class="{ done: clue.completed }" )
+              {{ clue.num }}
+          td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
 
-    h1(ng-show="done") You're done!!
+      h1(ng-show="done") You're done!!
 
-    h2 Challenge someone:
-    .lobby-user(ng-repeat="(key, player) in players")
-      {{ player.displayName }}
+      h2 Challenge someone:
+      .lobby-user(ng-repeat="(key, player) in players")
+        {{ player.displayName }}
