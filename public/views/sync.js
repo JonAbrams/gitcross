@@ -35,6 +35,11 @@ angular.module('gitcross').factory('goinstant', function () {
         if (context.key.match(/displayName$/) && usersInLobby[context.userId]) {
           usersInLobby[context.userId].displayName = value;
         }
+
+        if (context.key.match(/\/trophies\//) && usersInLobby[context.userId]) {
+          console.log("New trophy for " + usersInLobby[context.userId].displayName);
+          usersInLobby[context.userId].trophies[value.username] = value;
+        }
       });
 
       lobby.on('join', function (user) {
