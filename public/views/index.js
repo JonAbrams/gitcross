@@ -207,6 +207,10 @@ angular.module("gitcross", [])
     }
   }, true);
 
+  $scope.$watch(function () {
+    $('[rel="tooltip"]').tooltip();
+  });
+
   // Start the first game!
   newGame(1);
 })
