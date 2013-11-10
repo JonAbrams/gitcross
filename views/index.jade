@@ -60,7 +60,8 @@ block body
           .panel-heading
             .panel-title Your trophies
           .panel-body
-            .no-trophies(ng-show="trophies.length == 0")
+            p(ng-hide="self.displayName") Connecting...
+            .no-trophies(ng-show="trophies.length == 0 && self.displayName")
               p You haven't earned any trophies yet. Complete a puzzle to earn your first trophy!
               p <strong>What's a trophy?</strong>
               p Each puzzle is made up of one or more <a href="https://github.com/blog/1586-identicons">GitHub Identicons</a>.

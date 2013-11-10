@@ -179,7 +179,9 @@ angular.module("gitcross", [])
   function addTrophies () {
     $scope.githubbers.forEach(function (githubber) {
       if ( _.where($scope.trophies, {username: githubber.username}).length === 0 ) {
-        $scope.trophies.push( angular.copy(githubber) );
+        var trophy = angular.copy(githubber);
+        $scope.trophies.push(trophy);
+        goinstant.addTrophy(trophy);
       }
     });
   }
@@ -200,6 +202,8 @@ angular.module("gitcross", [])
   goinstant.registerObserver(function () {
     $scope.$apply(function () {
       $scope.players = goinstant.usersInLobby();
+      $scope.trophies = goinstant.trophies();
+      debugger
     });
   });
 

@@ -5,6 +5,7 @@ angular.module('gitcross').factory('goinstant', function () {
   var observers = [];
   var self = {};
   var lobby;
+  var trophies;
 
   function fireObservers () {
     observers.forEach(function (observer) {
@@ -23,7 +24,13 @@ angular.module('gitcross').factory('goinstant', function () {
         if (err) throw err;
         self.displayName = value.displayName;
         delete usersInLobby[value.id];
-        fireObservers();
+        lobby.self().key('trophies').get(function (err, value, context) {
+          trophies = [];
+          for (key in value) {
+            trophies.push(value[key]);
+          }
+          fireObservers();
+        });
       });
 
       lobby.users.watch(function(value, context) {
@@ -49,9 +56,15 @@ angular.module('gitcross').factory('goinstant', function () {
       observers.push(callback);
     },
     self: self,
+    trophies: function () {
+      return trophies;
+    },
     setName: function (name) {
       if (!self.displayName) return;
       lobby.self().key('displayName').set(name);
+    },
+    addTrophy: function (trophy) {
+      lobby.self().key('trophies').key(trophy.username).set(trophy);
     },
     usersInLobby: function () {
       return usersInLobby;
