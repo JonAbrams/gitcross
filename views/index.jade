@@ -54,7 +54,9 @@ block body
                 img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40", rel='tooltip', data-title='{{ githubber.name }} ({{ githubber.username }})', data-placement='bottom')
           span.label.label-success.time-elapsed
             {{ time | date:'mm:ss' }}
-        h1(ng-show="done") You solved it!!
+          .you-win(ng-show="done")
+            h3 You Won!!
+            button.btn.btn-success(type='button', ng-click='newGame()') Play Again
       .col-sm-4
         .panel.panel-success
           .panel-heading
