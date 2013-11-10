@@ -36,19 +36,24 @@ block body
           button.btn.btn-success(type='button', data-toggle='modal', data-target='#myModal')
             i.icon-question-sign
             |  How to Play
-        table.table.table-bordered
-          tr
-            td.empty
-            td.col-clues(ng-repeat="col in colClues")
-              .col-clue(ng-repeat="clue in colClues[$index] | reverse", ng-class="{ done: clue.completed }")
-                {{ clue.num }}
-          tr.puzzle-row(ng-repeat="row in myChoices.rows")
-            td.row-clues
-              span.row-clue(ng-repeat="clue in rowClues[$index]", ng-class="{ done: clue.completed }" )
-                {{ clue.num }}
-            td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
-        span.label.label-success.time-elapsed
-          {{ time | date:'mm:ss' }}
+        .table-container
+          table.table.table-bordered
+            tr
+              td.empty
+              td.col-clues(ng-repeat="col in colClues")
+                .col-clue(ng-repeat="clue in colClues[$index] | reverse", ng-class="{ done: clue.completed }")
+                  {{ clue.num }}
+            tr.puzzle-row(ng-repeat="row in myChoices.rows")
+              td.row-clues
+                span.row-clue(ng-repeat="clue in rowClues[$index]", ng-class="{ done: clue.completed }" )
+                  {{ clue.num }}
+              td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
+          .githubbers
+            .githubber(ng-repeat="githubber in githubbers")
+              a(target="_blank", href="https://github.com/{{ githubber.username }}", rel='tooltip', data-title='{{ githubber.name }} ({{ githubber.username }})')
+                img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40")
+          span.label.label-success.time-elapsed
+            {{ time | date:'mm:ss' }}
         h1(ng-show="done") You solved it!!
       .col-sm-4
         .githubbers
