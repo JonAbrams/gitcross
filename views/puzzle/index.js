@@ -25,7 +25,6 @@ exports.init = function(req, res, next){
     
     var set = 1;
     for (var k = 1 ; k <= game.sources.length ; k++) {
-      console.log('S'+set, k, k % size === 0);
       for (var n = 5 ; n >= 1 ; n--) {
         var puzzleRow = (set * 5 - n);
         game.puzzle[puzzleRow] = game.puzzle[puzzleRow].concat(game.sources[k - 1].puzzle[5 - n]);
