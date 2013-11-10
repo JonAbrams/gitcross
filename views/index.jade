@@ -50,31 +50,32 @@ block body
               td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
           .githubbers
             .githubber(ng-repeat="githubber in githubbers")
-              a(target="_blank", href="https://github.com/{{ githubber.username }}", rel='tooltip', data-title='{{ githubber.name }} ({{ githubber.username }})')
-                img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40")
+              a(target="_blank", href="https://github.com/{{ githubber.username }}")
+                img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40", rel='tooltip', data-title='{{ githubber.name }} ({{ githubber.username }})', data-placement='bottom')
           span.label.label-success.time-elapsed
             {{ time | date:'mm:ss' }}
         h1(ng-show="done") You solved it!!
       .col-sm-4
-        .githubbers
-          h3 Solve this puzzle to earn the following trophies:
-          .githubber(ng-repeat="githubber in githubbers")
-            a(target="_blank", href="https://github.com/{{ githubber.username }}")
-              img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40")
-              span.githubname
-                | {{ githubber.name }} ({{ githubber.username }})
-        h2 Currently Playing:
-        ul.lobby-user
-          li(ng-hide="changeName || !self.displayName")
-            | {{ self.displayName }} (You)
-            button.btn.btn-small(ng-click="changeName = true")
-              i.icon-cog
-          li(ng-show="changeName")
-            input(type="text", ng-model="self.displayName")
-            button.btn.btn-small(ng-click="changeName = false; setName(self.displayName)")
-              | Save
-          li(ng-repeat="(key, player) in players")
-            {{ player.displayName }}
+        .panel.panel-success
+          .panel-heading
+            .panel-title Currently Playing
+          .panel-body
+            ul.lobby-user
+              li(ng-hide="changeName || !self.displayName")
+                | {{ self.displayName }} (You)
+                button.btn.btn-small(ng-click="changeName = true")
+                  i.icon-cog
+              li(ng-show="changeName")
+                input(type="text", ng-model="self.displayName")
+                button.btn.btn-small(ng-click="changeName = false; setName(self.displayName)")
+                  | Save
+              li(ng-repeat="(key, player) in players")
+                {{ player.displayName }}
+        .panel.panel-success
+          .panel-heading
+            .panel-title Currently Playing
+          .panel-body
+            | collected trophies
     #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
       .modal-dialog
         .modal-content
