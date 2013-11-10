@@ -129,9 +129,11 @@ function puzzleDone () {
 angular.module("gitcross", [])
 .controller("PuzzleCtrl", function ($scope, $http, $timeout, goinstant) {
   var time, timer;
-  function newGame (difficulty) {
+
+  $scope.size = 1;
+  function newGame () {
     if (timer) $timeout.cancel(timer);
-    $http.get("/puzzles/?size=" + difficulty).then(function (res) {
+    $http.get("/puzzles/?size=" + $scope.size).then(function (res) {
       $scope.done = false;
       $scope.time = 0;
 

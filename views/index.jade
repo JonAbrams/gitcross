@@ -24,15 +24,15 @@ block body
             | Complete puzzles to unlock them as trophies!
         .new-game
           .btn-group
-              button.btn.btn-success(type='button', ng-click='newGame(1)') New Game
+              button.btn.btn-success(type='button', ng-click='newGame()') New Game
               button.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown')
                 span.caret
                 span.sr-only Toggle Dropdown
               ul.dropdown-menu(role='menu')
-                li: a(href='#', ng-click='newGame(1)') Easy (5 x 5)
-                li: a(href='#', ng-click='newGame(2)') Medium (10 x 10)
-                li: a(href='#', ng-click='newGame(3)') Hard (15 x 15)
-          | 
+                li: a(href='#', ng-click='size = 1;newGame()') Easy (5 x 5)
+                li: a(href='#', ng-click='size = 2;newGame()') Medium (10 x 10)
+                li: a(href='#', ng-click='size = 2;newGame()') Hard (15 x 15)
+          |
           button.btn.btn-success(type='button', data-toggle='modal', data-target='#myModal')
             i.icon-question-sign
             |  How to Play
