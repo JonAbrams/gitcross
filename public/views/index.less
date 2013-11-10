@@ -1,3 +1,9 @@
+h1, h2, h3, h4, h5 {
+  color: #8cc84b;
+}
+p {
+  color: #8cc84b;
+}
 .puzzle {
   .new-game {
     margin-top: 20px;
@@ -5,10 +11,22 @@
   table {
     width: auto;
     margin: 20px 0 0 0;
+    border-top: 3px solid #ccc;
+    border-left: 3px solid #ccc;
     
     td {
       color: #eee;
       padding: 0 !important;
+      &:nth-child(5n+1) {
+        border-right: 3px solid #ccc;
+      }
+    }
+    tr {
+      &:nth-child(5n+1) {
+        td {
+          border-bottom: 3px solid #ccc;
+        }
+      }
     }
     .empty {
       background-color: #33342d;

@@ -13,39 +13,37 @@ block feet
   script(src='/views/sync.min.js')
 
 block body
-  .container
-    .puzzle(ng-app="gitcross", ng-controller="PuzzleCtrl", ng-cloak="")
-      .new-game
-        .btn-group
-          button.btn.btn-success(ng-click="newGame(1)")
-            | Easy (5x5)
-          button.btn.btn-success(ng-click="newGame(2)")
-            | Medium (10x10)
-          button.btn.btn-success(ng-click="newGame(3)")
-            | Hard (15x15)
-      table.table.table-bordered
-        tr
-          td.empty
-          td.col-clues(ng-repeat="col in colClues")
-            .col-clue(ng-repeat="clue in colClues[$index] | reverse", ng-class="{ done: clue.completed }")
-              {{ clue.num }}
-        tr.puzzle-row(ng-repeat="row in myChoices.rows")
-          td.row-clues
-            span.row-clue(ng-repeat="clue in rowClues[$index]", ng-class="{ done: clue.completed }" )
-              {{ clue.num }}
-          td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
-
-      h1(ng-show="done") You solved it!!
-
-      .githubbers
-        h3 Solve the above puzzle to earn trophies of the following GitHubbers:
-        .githubber(ng-repeat="githubber in githubbers")
-          a(href="https://github.com/{{ githubber.username }}")
-            img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40")
-            span.githubname
-              | {{ githubber.name }} ({{ githubber.username }})
-
-
-      h2 People playing:
-      .lobby-user(ng-repeat="(key, player) in players")
-        {{ player.displayName }}
+  .container.puzzle(ng-app="gitcross", ng-controller="PuzzleCtrl", ng-cloak="")
+    .row
+      .col-sm-8
+        .new-game
+          .btn-group
+            button.btn.btn-success(ng-click="newGame(1)")
+              | Easy (5x5)
+            button.btn.btn-success(ng-click="newGame(2)")
+              | Medium (10x10)
+            button.btn.btn-success(ng-click="newGame(3)")
+              | Hard (15x15)
+        table.table.table-bordered
+          tr
+            td.empty
+            td.col-clues(ng-repeat="col in colClues")
+              .col-clue(ng-repeat="clue in colClues[$index] | reverse", ng-class="{ done: clue.completed }")
+                {{ clue.num }}
+          tr.puzzle-row(ng-repeat="row in myChoices.rows")
+            td.row-clues
+              span.row-clue(ng-repeat="clue in rowClues[$index]", ng-class="{ done: clue.completed }" )
+                {{ clue.num }}
+            td.pixel(ng-repeat="pixel in row.pixels" ng-class="{ filled: pixel.chosen, flagged: pixel.flagged }" ng-click="choosePixel(pixel)" ng-right-click="flagPixel(pixel)")
+        h1(ng-show="done") You solved it!!
+      .col-sm-4
+        .githubbers
+          h3 Solve this puzzle to earn the following trophies:
+          .githubber(ng-repeat="githubber in githubbers")
+            a(href="https://github.com/{{ githubber.username }}")
+              img.githubavatar(ng-src="{{ githubber.gravatar }}", width="40", height="40")
+              span.githubname
+                | {{ githubber.name }} ({{ githubber.username }})
+        h2 Other Players:
+        .lobby-user(ng-repeat="(key, player) in players")
+          {{ player.displayName }}
